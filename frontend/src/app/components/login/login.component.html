@@ -1,0 +1,50 @@
+<div class="row py-5">
+    <div class="columnaCentro">
+        <div class="card animated fadeInLeft">
+            <div class="card-body">
+                <div class="card-title">
+                    <h4>Iniciar sesi&oacute;n</h4>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="login()">
+
+                    <!-- Email input -->
+                    <div class="form-group mb-4">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" class="form-control bg-light text-black" formControlName="email" [class.is-invalid]="emailNoValido" />
+                        <small *ngIf="emailNoValido" class="text-danger">Ingresa el email</small>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-group mb-4">
+                        <label class="form-label" for="password">Password</label>
+                        <input (keypress)="lenghtPassword()" type="password" id="password" class="form-control bg-light text-black" formControlName="password" [class.is-invalid]="passwordNoValido" />
+                        <small *ngIf="passwordNoValido" class="text-danger">Ingresa el password</small>
+                        <small *ngIf="flag" class="text-danger">El password debe contener almenos 8 caracteres</small>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="adminType" value="false" formControlName="rol" />
+                            <label class="form-check-label" for="adminType">
+                              Iniciar sesi&oacute;n como administrador
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <a class="nav-link text-white" [routerLink]="['/singup']">Registrar nuevo usuario</a>
+                    </div>
+
+
+
+
+                    <!-- Submit button -->
+                    <button type="submit" [disabled]="formValid" class="btn bg-secondary bg-gradient btn-block mb-4">Aceptar</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>

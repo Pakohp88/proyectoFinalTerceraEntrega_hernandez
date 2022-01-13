@@ -1,0 +1,25 @@
+###
+GET http://localhost:3000/api/pedidos
+
+###
+GET http://localhost:3000/api/peliculas/61dde279b96dfbd345402af2
+
+###
+POST http://localhost:3000/api/peliculas
+Content-Type: application/json
+
+{
+    "titulo": "Avatar",
+    "director": "James Cameron",
+    "anio": "2009",
+    "fechaEstreno": "18 de diciembre de 2009",
+    "reparto": "Sam Worthington, Zoe Saldaña, Sigourney Weaver,Michelle Rodriguez,Stephen Lang, Giovanni Ribisi, Joel David Moore, C. C. H. Pounder, Wes Studi, Laz Alonso",
+    "sinopsis": "En un exuberante planeta llamado Pandora viven los Na'vi, seres que aparentan ser primitivos pero que en realidad son muy evolucionados. Debido a que el ambiente de Pandora es venenoso, los híbridos humanos/Na'vi, llamados Avatares, están relacionados con las mentes humanas, lo que les permite moverse libremente por Pandora. Jake Sully, un exinfante de marina paralítico se transforma a través de un Avatar, y se enamora de una mujer Na'vi.",
+    "img": "/assets/peliculas/avatar.jpg",
+    "precio": 300
+}
+
+
+###
+POST http://localhost:3000/api/peliculas/singup
+
