@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../services/cart.service';
+import { Store } from '@ngrx/store';
+import { Pedido } from 'src/app/models/pedido.model';
+import { AppState } from 'src/app/store/app.reducer';
+import { LOAD_PEDIDOS } from '../../store/actions/pedido.actions';
 
 @Component({
   selector: 'app-admin',
@@ -8,14 +11,20 @@ import { CartService } from '../../services/cart.service';
 })
 export class AdminComponent implements OnInit {
 
-  pedidos: any[] = [];
+  pedidos: Pedido[] = [];
+  loading: boolean = false;
+  error: any;
 
-  constructor(private cartService: CartService) { }
+  constructor(private store: Store<AppState>,) { }
 
   ngOnInit(): void {
-    this.cartService.obtenerPedidos().subscribe(
-      resp => { this.pedidos = resp; console.log(resp); }          
-    );
+    this.store.select('pedidos').subscribe(({ pedidos, loading, error }) => {
+      this.loading = loading;
+      this.error = error;
+      this.pedidos = pedidos;
+   });
+
+   this.store.dispatch(LOAD_PEDIDOS());
   }
 
 }

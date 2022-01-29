@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { PeliculasService } from 'src/app/services/peliculas.service';
 import { Pelicula } from '../../services/peliculas.service';
 import { CartService } from '../../services/cart.service';
 import Swal from 'sweetalert2';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app.reducer';
+import { LOAD_PELICULAS } from '../../store/actions/pelicula.action';
+
+
 
 @Component({
   selector: 'app-peliculas',
@@ -12,12 +16,20 @@ import Swal from 'sweetalert2';
 export class PeliculasComponent implements OnInit {
 
   peliculaArray: Pelicula[] = [];
+  loading: boolean = false;
+  error: any;
 
-  constructor(private peliculasService: PeliculasService,
+  constructor(private store: Store<AppState>,
               private carritoService: CartService ) { }
 
   ngOnInit(): void {
-      this.peliculasService.getPeliculas().subscribe(resp => { this.peliculaArray = resp;  } );
+     this.store.select('peliculas').subscribe(({ peliculas, loading, error }) => {
+        this.loading = loading;
+        this.error = error;
+        this.peliculaArray = peliculas;
+     });
+
+     this.store.dispatch(LOAD_PELICULAS());
   }
 
   agregarAlCarrito(pelicula: Pelicula){

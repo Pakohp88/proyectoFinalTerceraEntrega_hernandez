@@ -1,5 +1,5 @@
 ###
-GET http://localhost:3000/api/pedidos
+GET http://localhost:3000/api/peliculas
 
 ###
 GET http://localhost:3000/api/peliculas/61dde279b96dfbd345402af2

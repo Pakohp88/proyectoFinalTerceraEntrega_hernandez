@@ -13,6 +13,14 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 import { AuthService } from './services/auth.service';
 import { AdminComponent } from './components/admin/admin.component';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { appReducers } from './store/app.reducer';
+import { PeliculaEffects } from './store/effects/pelicula.effects';
+import { PedidosEffects } from './store/effects/pedido.effects';
+
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +37,9 @@ import { AdminComponent } from './components/admin/admin.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([PeliculaEffects, PedidosEffects])
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
